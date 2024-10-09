@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "desafio-dev-django"
+version = "0.1.0"
+description = "Teste Prático - Vaga de Desenvolvedor Python/Django"
+authors = ["paulovitorgm <paulovitorgaspmelo@hotmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.1.2"
+ruff = "^0.6.9"
+python-dotenv = "^1.0.1"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.6.9"
+taskipy = "^1.13.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.ruff]
+line-length = 79
+extend-exclude = ['migrations']
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
+
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+
+
+[tool.taskipy.tasks]
+lint = 'ruff check .; ruff check . --diff'
+format = 'ruff check . --fix; ruff format .'
+run = 'python manage.py runserver'

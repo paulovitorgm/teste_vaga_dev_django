@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+
+<form action="{% url 'tarefas' %}">
+    {% csrf_token %}
+
+    {% for campo in form %}
+            <div>
+                <label for="{{ campo.id_for_label }}">{{ campo.label }}</label>
+                <div>
+                    {{ campo }}
+                    <!-- Exibe mensagens de erro caso haja algum problema com o campo -->
+                    {% if campo.errors %}
+                        <div style="color: red;">
+                            {% for error in campo.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+</form>
+
+
+{% endblock%}
+
+
+</body>
+</html>
