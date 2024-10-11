@@ -9,13 +9,7 @@ class TempoDeTrabalhoModel(models.Model):
         db_column='data_do_registro', db_default=Now()
     )
 
-    tempo_trabalhado_horas = models.IntegerField(
-        db_column='tempo_de_trabalho_em_horas'
-    )
-
-    tempo_trabalhado_minutos = models.IntegerField(
-        db_column='tempo_de_trabalho_em_minutos'
-    )
+    tempo_trabalhado = models.TimeField(db_column='tempo_trabalhado')
 
     descricao_trab_realizado = models.TextField(
         db_column='descricao_do_trabalho_realizado',

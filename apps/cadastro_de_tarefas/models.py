@@ -11,15 +11,10 @@ class TarefasModel(models.Model):
     )
 
     data_criacao = models.DateTimeField(
-        db_column='data_de_criacao',
-        null=False,
-        unique=False,
-        db_default=Now()
+        db_column='data_de_criacao', null=False, unique=False, db_default=Now()
     )
 
-    descricao = models.TextField(
-        db_column='descricao', max_length=360, blank=False
-    )
+    descricao = models.TextField(db_column='descricao', max_length=360, blank=False)
 
     def __str__(self):
         return self.descricao
