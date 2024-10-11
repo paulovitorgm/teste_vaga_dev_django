@@ -1,6 +1,8 @@
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.db import IntegrityError
+
+
 from apps.cadastro_de_tarefas.forms import TarefasForm
 from apps.cadastro_de_tarefas.models import TarefasModel
 
@@ -29,5 +31,12 @@ def form_tarefas(request):
 def visualizar_lista_de_tarefas(request):
     lista = TarefasModel.objects.all()
     mensagem = 'Ainda não há tarefas registradas' if not lista.exists() else None
+    contexto = {'lista': lista, 'mensagem': mensagem}
+    return render(request, 'cadastro_de_tarefas/lista_de_tarefas.html', contexto)
+
+
+def visualizar_tarefa(request, tarefa_id):
+    lista = TarefasModel.objects.get(id=tarefa_id)
+    mensagem = 'Tarefa não encontrada' if not lista else None
     contexto = {'lista': lista, 'mensagem': mensagem}
     return render(request, 'cadastro_de_tarefas/lista_de_tarefas.html', contexto)
