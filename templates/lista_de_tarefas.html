@@ -1,0 +1,45 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+
+<table class="table table-striped container col-md-* mx-auto">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Responsável</th>
+            <th>Descrição</th>
+            <th>Data de Criação</th>
+        </tr>
+    <form action="" class="container col-md-* mx-auto" method="GET">
+        <tr>
+            <td><input type="text" name="responsavel" id="responsavel" value="{{ request.GET.responsavel }}"></td>
+            <td><input></td>
+            <td><input></td>
+            <td><input></td>
+        </tr>
+    </form>
+    </thead>
+    <tbody>
+    {% if lista %}
+        {% for item in lista %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.responsavel }}</td>
+                <td>{{ item.descricao }}</td>
+                <td>{{ item.data_criacao }}</td>
+            </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td colspan="4">{{ mensagem }}</td>
+        </tr>
+    </tbody>
+
+    {% endif %}
+</table>
+
+{% endblock %}
