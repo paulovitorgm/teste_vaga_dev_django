@@ -3,7 +3,6 @@
 {% block content %}
 
     <form action="{% url url_name %}" class="container col-md-* mx-auto" method="POST">
-
         {% csrf_token %}
         {% include 'partials/_alertas.html' %}
         {% for campo in form %}

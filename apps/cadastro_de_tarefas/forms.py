@@ -2,10 +2,10 @@ import re
 
 from django import forms
 
-from .models import TarefasModel
+from apps.tempo_de_trabalho.models import TarefasModel
 
 
-class TarefasForm(forms.Form):
+class TarefasForm(forms.ModelForm):
     responsavel = forms.CharField(
         label='Responsável',
         max_length=75,
@@ -29,7 +29,7 @@ class TarefasForm(forms.Form):
 
     class Meta:
         model = TarefasModel
-        fields = '__all__'
+        fields = ['responsavel', 'descricao']
 
     def clean_responsavel(self):
         responsavel = self.cleaned_data.get('responsavel').strip()

@@ -2,33 +2,31 @@
 {% load static %}
 {% block content %}
 
-
-
-
-
 <table class="table table-striped container col-md-* mx-auto">
     <thead>
         <tr>
             <th>ID</th>
-            <th>Responsável</th>
+            <th>Tarefa</th>
             <th>Descrição</th>
-            <th>Data de Criação</th>
+            <th>Data do registro</th>
+            <th>Tempo trabalhado</th>
         </tr>
-        <tr><th colspan="4"> FALTA FAZER O FILTRO</th></tr>
     </thead>
     <tbody>
     {% if lista %}
         {% for item in lista %}
             <tr>
                 <td>{{ item.id }}</td>
-                <td>{{ item.responsavel }}</td>
-                <td>{{ item.descricao }}</td>
-                <td>{{ item.data_criacao }}</td>
+                <td>{{ item.tarefa }}</td>
+                <td>{{ item.descricao_trab_realizado }}</td>
+                <td>{{ item.data_do_registro }}</td>
+                <td>{{ item.tempo_trabalhado }}</td>
+
             </tr>
         {% endfor %}
     {% else %}
         <tr>
-            <td colspan="4">{{ mensagem }}</td>
+            <td colspan="5">{{ mensagem }}</td>
         </tr>
     </tbody>
 

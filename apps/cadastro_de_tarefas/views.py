@@ -14,8 +14,8 @@ def cadastrar_tarefa(request):
         if form.is_valid():
             try:
                 tarefa = TarefasModel.objects.create(
-                    responsavel=request.POST.get('responsavel'),
-                    descricao=request.POST.get('descricao'),
+                    responsavel=form.cleaned_data.get('responsavel'),
+                    descricao=form.cleaned_data.get('descricao'),
                 )
                 messages.success(request, f'A tarefa "{tarefa}" foi criada.')
                 return redirect('tarefas')

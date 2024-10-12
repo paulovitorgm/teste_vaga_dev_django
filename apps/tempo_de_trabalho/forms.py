@@ -1,15 +1,30 @@
 from django import forms
+from django.core.exceptions import ValidationError
+from django.forms import TimeField
 
+from apps.cadastro_de_tarefas.models import TarefasModel
 from apps.tempo_de_trabalho.models import TempoDeTrabalhoModel
 
 
-class TempoDeTrabalhoForm(forms.Form):
-    tempo_trabalhado = forms.TimeField(
 
+class TempoDeTrabalhoForm(forms.ModelForm):
+    tarefa = forms.ModelChoiceField(
+        queryset=TarefasModel.objects.all(),
+        label='Tarefa',
+        required=True,
+        widget=forms.Select(
+            attrs={
+                'class': 'form-control'
+            }
+        ),
+        error_messages={'invalid_choice': 'A tarefa selecionada é inválida.',
+                        'required': 'Escolha uma tarefa.'}
+    )
+
+    tempo_trabalhado = forms.TimeField(
         label='Tempo de trabalho',
         required=True,
         widget=forms.TimeInput(
-            format='%H:%M',
             attrs={
                 'type': 'time',
                 'autocomplete': 'off',
@@ -21,7 +36,7 @@ class TempoDeTrabalhoForm(forms.Form):
                         'required': 'O campo é obrigatório'},
     )
 
-    descricao = forms.CharField(
+    descricao_trab_realizado = forms.CharField(
         strip=True,
         required=True,
         label='Descrição',
@@ -34,9 +49,11 @@ class TempoDeTrabalhoForm(forms.Form):
 
     class Meta:
         model = TempoDeTrabalhoModel
-        fields = '__all__'
+        fields = ['tarefa', 'tempo_trabalhado', 'descricao_trab_realizado']
 
-    def clean_tempo_trabalhado(self):
-        tempo = self.cleaned_data.get('tempo_trabalhado')
-        tempo = tempo[0](tempo.split())
-        return tempo
+    def clean_tarefa(self):
+        id_tarefa = self.cleaned_data['tarefa']
+        # if id_tarefa and not TarefasModel.objects.filter(pk=id_tarefa).exists():
+        if id_tarefa is None:
+            raise forms.ValidationError('A tarefa selecionada não existe.')
+        return id_tarefa
