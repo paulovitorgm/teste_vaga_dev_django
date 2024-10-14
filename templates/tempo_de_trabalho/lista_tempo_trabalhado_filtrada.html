@@ -1,0 +1,38 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<table class="table table-striped container col-md-* mx-auto">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tarefa</th>
+            <th>Descrição</th>
+            <th>Data do registro</th>
+            <th>Tempo trabalhado</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% if resultado %}
+        {% for item in resultado %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.tarefa }}</td>
+                <td>{{ item.descricao_trab_realizado }}</td>
+                <td>{{ item.data_do_registro }}</td>
+                <td>{{ item.tempo_trabalhado }}</td>
+
+            </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td colspan="5">{{ mensagem }}</td>
+        </tr>
+    {% endif %}
+    </tbody>
+
+
+</table>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+{% block content %}
+
+    <form action="{% url url_name %}" class="container col-md-* mx-auto" method="POST">
+        {% csrf_token %}
+        {% include 'partials/_alertas.html' %}
+        {% for campo in form %}
+            <div class="form-floating mb-3">
+                {{ campo }}
+                <label for="{{ campo.id_for_label }}">{{ campo.label }}</label>
+                {% if campo.errors %}
+                    <div class="alert alert-warning m-3" role="alert">{{ campo.errors }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <input class="btn btn-success" type="submit" value="Enviar">
+        <input class="btn btn-warning" type="reset" value="Limpar">
+        <input class="btn btn-danger" type="reset" value="Cancelar - DAR DESTINO CORRETO AO BOTAO">
+    </form>
+
+
+
+{% endblock %}

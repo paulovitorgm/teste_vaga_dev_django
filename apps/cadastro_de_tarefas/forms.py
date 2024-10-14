@@ -14,7 +14,7 @@ class TarefasForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={'autocomplete': 'off', 'class': 'form-control'}
         ),
-        error_messages={'required': 'O campo é obrigatório'}
+        error_messages={'required': 'O campo é obrigatório'},
     )
 
     descricao = forms.CharField(
@@ -24,7 +24,7 @@ class TarefasForm(forms.ModelForm):
         widget=forms.Textarea(
             attrs={'rows': 4, 'autocomplete': 'off', 'class': 'form-control'}
         ),
-        error_messages={'required': 'O campo é obrigatório'}
+        error_messages={'required': 'O campo é obrigatório'},
     )
 
     class Meta:
