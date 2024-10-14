@@ -1,4 +1,6 @@
 from django.contrib import admin
+
+from apps.tempo_de_trabalho.forms.cadastrar_tempo_forms import TempoDeTrabalhoForm
 from apps.tempo_de_trabalho.models import TempoDeTrabalhoModel
 
 
@@ -20,6 +22,7 @@ class TempoDeTrabalhoAdmin(admin.ModelAdmin):
         'descricao_trab_realizado'
     ]
 
+    form = TempoDeTrabalhoForm
 
 
 admin.site.register(TempoDeTrabalhoModel, TempoDeTrabalhoAdmin)
