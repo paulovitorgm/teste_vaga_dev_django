@@ -1,4 +1,5 @@
-from datetime import datetime, timedelta
+from datetime import timedelta
+
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.urls import resolve
@@ -16,9 +17,7 @@ def cadastrar_tempo_de_trabalho(request):
         if form.is_valid():
             tarefa = form.cleaned_data.get('tarefa')
             tempo_de_trabalho = TempoDeTrabalhoModel.objects.create(  # noqa: F841
-                tempo_trabalhado=form.cleaned_data.get(
-                    'tempo_trabalhado'
-                ),
+                tempo_trabalhado=form.cleaned_data.get('tempo_trabalhado'),
                 descricao_trab_realizado=form.cleaned_data.get(
                     'descricao_trab_realizado'
                 ),
@@ -56,14 +55,13 @@ def filtrar_tempo(request):
             resultado = busca(request, form)
             mensagem = 'Nenhum resultado foi encontrado. Tente novamente.'
             contexto = {'resultado': resultado, 'mensagem': mensagem}
-            return render(request,
-                              'tempo_de_trabalho/lista_tempo_trabalhado_filtrada.html',
-                              contexto)
+            return render(
+                request,
+                'tempo_de_trabalho/lista_tempo_trabalhado_filtrada.html',
+                contexto,
+            )
 
-    return render(
-        request,
-'tempo_de_trabalho/filtrar_tempo.html',
-        contexto)
+    return render(request, 'tempo_de_trabalho/filtrar_tempo.html', contexto)
 
 
 def busca(request, form):
@@ -71,27 +69,20 @@ def busca(request, form):
     resultado = None
     if request.POST.get('tarefa'):
         tarefa = form.cleaned_data.get('tarefa')
-        resultado = objeto.filter(
-            tarefa_id=tarefa
-        )
+        resultado = objeto.filter(tarefa_id=tarefa)
     elif request.POST.get('tempo_trabalhado'):
         tempo = form.cleaned_data.get('tempo_trabalhado')
         resultado = objeto.filter(
             tempo_trabalhado__hour__lte=tempo.hour,
-            tempo_trabalhado__hour__gte=tempo.hour
+            tempo_trabalhado__hour__gte=tempo.hour,
         )
     elif request.POST.get('descricao_trab_realizado'):
         descricao = form.cleaned_data.get('descricao_trab_realizado')
-        resultado = objeto.filter(
-            descricao_trab_realizado__icontains=descricao
-        )
+        resultado = objeto.filter(descricao_trab_realizado__icontains=descricao)
     elif request.POST.get('data_inicial') and request.POST.get('data_final'):
         data_inicial = form.cleaned_data.get('data_inicial')
         data_final = form.cleaned_data.get('data_final')
         resultado = objeto.filter(
-            data_do_registro__range=[data_inicial, data_final + timedelta(1)])
+            data_do_registro__range=[data_inicial, data_final + timedelta(1)]
+        )
     return resultado
-
-
-def listar_tempo_filtrado(request):
-    contexto = TempoDeTrabalhoModel

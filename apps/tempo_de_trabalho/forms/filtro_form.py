@@ -43,25 +43,23 @@ class FiltroForm(forms.Form):
     data_inicial = forms.DateField(
         label='Data inicial',
         required=False,
-        widget=forms.DateInput(
-            attrs={
-                'class': 'form-control', 'type': 'date'}),
+        widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
         input_formats=['%d/%m/%Y', '%Y-%m-%d'],
     )
 
     data_final = forms.DateField(
         label='Data final',
         required=False,
-        widget=forms.DateInput(
-            attrs={
-                'class': 'form-control', 'type': 'date'}),
+        widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
         input_formats=['%d/%m/%Y', '%Y-%m-%d'],
     )
 
     class Meta:
         model = TempoDeTrabalhoModel
         fields = '__all__'
-        exclude = ['data_do_registro',]
+        exclude = [
+            'data_do_registro',
+        ]
 
     def clean(self):
         cleaned_data = super().clean()
@@ -70,16 +68,15 @@ class FiltroForm(forms.Form):
 
         if data_inicial and not data_final:
             raise forms.ValidationError(
-                           'Quando existe data inicial a data final torna-se obrigatória'
-                           )
+                'Quando existe data inicial a data final torna-se obrigatória'
+            )
         if not data_inicial and data_final:
             raise forms.ValidationError(
-                           'Quando existe data final a data inicial torna-se obrigatória'
-                           )
+                'Quando existe data final a data inicial torna-se obrigatória'
+            )
         if (data_inicial and data_final) and (data_final < data_inicial):
             raise forms.ValidationError(
                 'A data final precisa ser maior ou igual à data inicial.'
             )
 
         return cleaned_data
-
