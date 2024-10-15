@@ -7,7 +7,7 @@ from apps.cadastro_de_tarefas.views import (
 )
 
 urlpatterns = [
-    path('', cadastrar_tarefa, name='tarefas'),
+    path('criar/', cadastrar_tarefa, name='tarefas'),
     path('lista/', visualizar_lista_de_tarefas, name='lista'),
     path('lista/<int:tarefa_id>/', visualizar_tarefa, name='tarefa'),
 ]

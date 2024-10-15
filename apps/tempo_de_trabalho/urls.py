@@ -7,8 +7,7 @@ from apps.tempo_de_trabalho.views import (
 )
 
 urlpatterns = [
-    path('', cadastrar_tempo_de_trabalho, name='cadastrar_tempo'),
+    path('cadastrar/', cadastrar_tempo_de_trabalho, name='cadastrar_tempo'),
     path('lista/', listar_tempo_de_trabalho, name='listar_tempo'),
     path('filtrar/', filtrar_tempo, name='filtrar_tempo'),
-    path('resultado/', filtrar_tempo, name='resultado'),
 ]

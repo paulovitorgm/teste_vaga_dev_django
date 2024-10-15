@@ -9,11 +9,20 @@
           rel="stylesheet" crossorigin="anonymous">
 </head>
 <body>
-<div class="m-3"><a href="{% url 'tarefas' %}">CRIAR TAREFA</a></div>
-<div class="m-3"><a href="{% url 'lista' %}">LISTA DE TAREFAS</a></div>
-<div class="m-3"><a href="{% url 'cadastrar_tempo' %}">CADASTRAR TEMPO</a></div>
-<div class="m-3"><a href="{% url 'listar_tempo' %}">LISTAR TEMPO</a></div>
-<div class="m-3"><a href="{% url 'filtrar_tempo' %}">FILTRAR TEMPO</a></div>
+
+<div class="container mb-3">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><a href="{% url 'index' %}">INÍCIO</a></li>
+      <li class="list-group-item"><a href="{% url 'tarefas' %}">CRIAR TAREFA</a></li>
+      <li class="list-group-item"><a href="{% url 'lista' %}">LISTA DE TAREFAS</a></li>
+      <li class="list-group-item"><a href="{% url 'cadastrar_tempo' %}">CADASTRAR TEMPO</a></li>
+      <li class="list-group-item"><a href="{% url 'listar_tempo' %}">LISTAR TEMPO</a></li>
+      <li class="list-group-item"><a href="{% url 'filtrar_tempo' %}">FILTRAR TEMPO</a></li>
+      <li class="list-group-item"><a href="{% url 'admin:index' %}">DJANGO ADMIN</a></li>
+    </ul>
+</div>
+
+
 
 {% block content %}
 

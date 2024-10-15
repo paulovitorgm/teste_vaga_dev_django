@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'apps.index',
     'apps.cadastro_de_tarefas',
     'apps.tempo_de_trabalho',
 

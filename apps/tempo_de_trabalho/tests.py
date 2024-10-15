@@ -121,8 +121,8 @@ class TestFiltro(TestCase):
         response = self.client.get(reverse('listar_tempo'))
         consulta = TempoDeTrabalhoModel.objects.all()
         self.assertListEqual(
-            [self.tarefa, self.tarefa1, self.tarefa2],
-            [consulta[0], consulta[1], consulta[2]],
+            [self.tarefa.pk, self.tarefa1.pk, self.tarefa2.pk],
+            [consulta[0].pk, consulta[1].pk, consulta[2].pk],
         )
         self.assertEqual(response.status_code, HTTPStatus.OK)
 
