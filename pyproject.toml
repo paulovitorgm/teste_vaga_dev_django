@@ -16,6 +16,9 @@ python-dotenv = "^1.0.1"
 ruff = "^0.6.9"
 taskipy = "^1.13.0"
 
+[tool.poetry.group.dev]
+optional = true
+
 
 [build-system]
 requires = ["poetry-core"]
@@ -25,7 +28,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.ruff]
 line-length = 85
 extend-exclude = ['migrations', 'manage.py', 'settings.py']
-
+ignore = ['PT009']
 
 
 [tool.ruff.format]
@@ -42,3 +45,5 @@ lint = 'ruff check .; ruff check . --diff'
 format = 'ruff check . --fix && ruff format .'
 run = 'python manage.py runserver'
 m = 'python manage.py'
+pre_test = 'task lint'
+test = 'python manage.py test'

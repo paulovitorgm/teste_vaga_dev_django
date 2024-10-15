@@ -18,7 +18,9 @@ A versão usada do python é 3.12.5
 ```
 A versão usada do Django é 5.1.2
 ```
-
+```
+O banco de dados é o SQLite.
+```
 
 #### Para configurar todo o ambiente basta executar:
 
@@ -62,3 +64,17 @@ m       encurta o comando 'python manage.py'
 ```
 
 Para executar qualquer comando, basta usar: `task <comando>`, como por exemplo `task run`.
+
+
+#### Para rodar o projeto use os comandos na ordem
+```
+task m makemigrations
+task m migrate
+task run
+```
+
+##### Para acessar o admin é necessário criar um superusuário
+```
+task m createsuperuser
+```
+###### Fornecer os dados que serão pedidos

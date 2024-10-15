@@ -15,12 +15,10 @@ class TempoDeTrabalhoAdmin(admin.ModelAdmin):
         'data_do_registro',
         'tempo_trabalhado',
         'descricao_trab_realizado',
-        'tarefa'
+        'tarefa',
     ]
     list_per_page = 10
-    search_fields = [
-        'descricao_trab_realizado'
-    ]
+    search_fields = ['descricao_trab_realizado']
 
     form = TempoDeTrabalhoForm
 

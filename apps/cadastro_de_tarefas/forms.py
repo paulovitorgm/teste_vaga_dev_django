@@ -8,7 +8,7 @@ from apps.tempo_de_trabalho.models import TarefasModel
 class TarefasForm(forms.ModelForm):
     responsavel = forms.CharField(
         label='Responsável',
-        max_length=75,
+        max_length=60,
         required=True,
         strip=True,
         widget=forms.TextInput(
@@ -33,7 +33,7 @@ class TarefasForm(forms.ModelForm):
 
     def clean_responsavel(self):
         responsavel = self.cleaned_data.get('responsavel').strip()
-        if not re.match(r'^[A-Za-z\s]+$', responsavel):
+        if not re.match(r'^[A-Za-zÀ-ÿ\s]+$', responsavel, re.UNICODE):
             raise forms.ValidationError(
                 'O nome do responsável deve conter apenas letras e espaços.'
             )
