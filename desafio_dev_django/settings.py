@@ -44,9 +44,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # apps próprios
     'apps.index',
     'apps.cadastro_de_tarefas',
     'apps.tempo_de_trabalho',
+
+    # apps de terceiros
+    'django_filters',
 
 ]
 

@@ -18,3 +18,6 @@ class TempoDeTrabalhoModel(models.Model):
     )
 
     tarefa = models.ForeignKey(TarefasModel, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.id)

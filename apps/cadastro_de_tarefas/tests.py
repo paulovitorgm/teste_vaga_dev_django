@@ -9,7 +9,9 @@ from apps.cadastro_de_tarefas.models import TarefasModel
 
 class TestTarefasModel(TestCase):
     def setUp(self):
-        self.tarefa = TarefasModel.objects.create(responsavel='José', descricao='Tarefa')
+        self.tarefa = TarefasModel.objects.create(
+            responsavel='José',
+            descricao='Tarefa')
 
     def test_criar_tarefa(self):
         objeto = TarefasModel.objects.get(pk=self.tarefa.pk)

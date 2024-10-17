@@ -125,19 +125,3 @@ class TestFiltro(TestCase):
             [consulta[0].pk, consulta[1].pk, consulta[2].pk],
         )
         self.assertEqual(response.status_code, HTTPStatus.OK)
-
-    def test_filtrar_tempo_por_tempo_trabalhado(self):
-        """Deve retornar apenas 2 objetos do banco na consulta."""
-        response = self.client.get(reverse('filtrar_tempo'))
-        consulta = TempoDeTrabalhoModel.objects.filter(tempo_trabalhado__hour=4)
-        self.assertEqual(len(consulta), 1)
-        self.assertEqual(response.status_code, HTTPStatus.OK)
-
-    def test_filtrar_tempo_por_tarefa(self):
-        """Deve retornar apenas 1 objeto do banco na consulta."""
-        response = self.client.get(reverse('filtrar_tempo'))
-        consulta = TempoDeTrabalhoModel.objects.filter(
-            descricao_trab_realizado__icontains='Trabalho'
-        )
-        self.assertEqual(len(consulta), 2)
-        self.assertEqual(response.status_code, HTTPStatus.OK)

@@ -2,35 +2,58 @@
 {% load static %}
 {% block content %}
 
-<table class="table table-striped container col-md-* mx-auto">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Tarefa</th>
-            <th>Descrição</th>
-            <th>Data do registro</th>
-            <th>Tempo trabalhado</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% if lista %}
-        {% for item in lista %}
-            <tr>
-                <td>{{ item.id }}</td>
-                <td>{{ item.tarefa }}</td>
-                <td>{{ item.descricao_trab_realizado }}</td>
-                <td>{{ item.data_do_registro }}</td>
-                <td>{{ item.tempo_trabalhado }}</td>
+<div class="container mx-auto">
+    <div class="row">
+        <!-- Coluna do Formulário -->
+        <div class="col-md-4">
+            <form method="get">
+                {% for campo in filtro.form %}
+                    <div class="form-floating mb-3">
+                        {{ campo }}
+                        <label for="{{ campo.id_for_label }}">{{ campo.label }}</label>
+                    </div>
+                {% endfor %}
+                <input class="btn btn-success" type="submit" value="Enviar">
+                <button type="reset" class="btn btn-danger"
+                        onclick="window.location.href='{% url 'listar_tempo' %}'">Cancelar</button>
 
-            </tr>
-        {% endfor %}
-    {% else %}
-        <tr>
-            <td colspan="5">{{ mensagem }}</td>
-        </tr>
-    </tbody>
+            <btn></btn>
+            </form>
+        </div>
 
-    {% endif %}
-</table>
+        <!-- Coluna da Tabela -->
+        <div class="col-md-8">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tarefa</th>
+                        <th>Descrição</th>
+                        <th>Data do registro</th>
+                        <th>Tempo trabalhado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if filtro.qs %}
+                        {% for item in filtro.qs %}
+                            <tr>
+                                <td>{{ item.id }}</td>
+                                <td>{{ item.tarefa }}</td>
+                                <td>{{ item.descricao_trab_realizado }}</td>
+                                <td>{{ item.data_do_registro }}</td>
+                                <td>{{ item.tempo_trabalhado }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="5">{{ mensagem }}</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
 
 {% endblock %}
