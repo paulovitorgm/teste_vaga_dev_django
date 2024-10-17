@@ -130,11 +130,6 @@ Listar todos os tempos cadastrados:
 ```
 http://127.0.0.1:8000/tempo/lista/
 ```
-Filtrar tempo de trabalho:
-```
-http://127.0.0.1:8000/tempo/filtrar/
-```
-
 Django admin:
 ```
 http://127.0.0.1:8000/admin/
