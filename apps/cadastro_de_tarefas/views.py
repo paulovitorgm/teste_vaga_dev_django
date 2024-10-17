@@ -44,7 +44,7 @@ def visualizar_lista_de_tarefas(request):
 
 
 def visualizar_tarefa(request, tarefa_id):
-    lista = TarefasModel.objects.get(id=tarefa_id)
-    mensagem = 'Tarefa não encontrada' if not lista else None
-    contexto = {'lista': [lista], 'mensagem': mensagem}
+    lista = TarefasModel.objects.filter(pk=tarefa_id)
+    mensagem = 'Tarefa não encontrada'
+    contexto = {'lista': lista, 'mensagem': mensagem}
     return render(request, 'cadastro_de_tarefas/lista_de_tarefas.html', contexto)
